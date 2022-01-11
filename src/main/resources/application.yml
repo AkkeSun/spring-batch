@@ -12,6 +12,8 @@ spring:
     url: jdbc:mysql://localhost:3306/sun?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true
     username: root
     password: system
-
+  batch:
+    job:
+      enabled: false
 
 

@@ -1,14 +1,13 @@
 package io.springbatch.springbatch;
 
+import io.springbatch.springbatch.listener.JobRepositoryListener;
+import io.springbatch.springbatch.tasklet.ExecutionTasklet1;
+import io.springbatch.springbatch.tasklet.ExecutionTasklet2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.scope.context.ChunkContext;
-import org.springframework.batch.core.step.tasklet.Tasklet;
-import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,49 +20,34 @@ public class HelloJobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
+    private final ExecutionTasklet1 executionTasklet1;
+    private final ExecutionTasklet2 executionTasklet2;
+    private final JobRepositoryListener jobRepositoryListener;
+
 
     // job 생성
     @Bean
     public Job helloJob(){
-        return jobBuilderFactory.get("helloJob")
-                .start(helloStep()) // 스탭 실행
-                .next(helloStep2()) // 스탭 실행
+        return jobBuilderFactory.get("helloJob")     // jobName Setting
+                .start(step1()) // 스탭 실행
+                .next(step2())  // 스탭 실행
+                .listener(jobRepositoryListener) // 리스너 등록
+                .build();
+    }
+
+    // Step 생성
+    @Bean
+    public Step step1(){
+        return  stepBuilderFactory.get("step1")
+                .tasklet(executionTasklet1)     // tasklet 등록
                 .build();
     }
 
     @Bean
-    // Step 생성
-    public Step helloStep(){
-        return  stepBuilderFactory.get("helloStep1")
-                // tasklet 생성 : 기본적으로 무한반복
-                .tasklet( new Tasklet() {
-                    @Override
-                    public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-                        System.out.println("==========================");
-                        System.out.println(" >> Hello Spring Batch!! ");
-                        System.out.println("==========================");
-                        return RepeatStatus.FINISHED; // 반복 안함. return null 과 같은 의미
-                    }
-                })
-                .build()
-                ;
-    }
-
-
-    @Bean
-    public Step helloStep2(){
-        return  stepBuilderFactory.get("helloStep2")
-                .tasklet(new Tasklet() {
-                    @Override
-                    public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-                        System.out.println("==========================");
-                        System.out.println(" >> Step2 was executed ");
-                        System.out.println("==========================");
-                        return null;
-                    }
-                })
-                .build()
-                ;
+    public Step step2() {
+        return stepBuilderFactory.get("step2")
+                .tasklet(executionTasklet2)
+                .build();
     }
 }
 

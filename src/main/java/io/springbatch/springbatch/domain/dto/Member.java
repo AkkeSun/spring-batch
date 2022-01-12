@@ -1,4 +1,4 @@
-package io.springbatch.springbatch.dto;
+package io.springbatch.springbatch.domain.dto;
 
 import lombok.Data;
 

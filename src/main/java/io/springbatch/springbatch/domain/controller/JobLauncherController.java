@@ -1,6 +1,6 @@
-package io.springbatch.springbatch.controller;
+package io.springbatch.springbatch.domain.controller;
 
-import io.springbatch.springbatch.dto.Member;
+import io.springbatch.springbatch.domain.dto.Member;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -21,7 +21,7 @@ import java.util.Date;
 public class JobLauncherController {
 
     @Autowired
-    private Job job;
+    private Job helloJob;
 
     @Autowired
     private BasicBatchConfigurer basicBatchConfigurer;
@@ -52,7 +52,7 @@ public class JobLauncherController {
         jobLauncher.setTaskExecutor(new SimpleAsyncTaskExecutor());
          */
 
-        jobLauncher.run(job, jobParameters);
+        jobLauncher.run(helloJob, jobParameters);
         return "batch Completed";
     }
 }

@@ -1,4 +1,4 @@
-package io.springbatch.springbatch.listener;
+package io.springbatch.springbatch.domain.listener;
 
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.repository.JobRepository;

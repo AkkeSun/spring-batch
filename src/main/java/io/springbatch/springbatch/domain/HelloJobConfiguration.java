@@ -1,8 +1,8 @@
-package io.springbatch.springbatch;
+package io.springbatch.springbatch.domain;
 
-import io.springbatch.springbatch.listener.JobRepositoryListener;
-import io.springbatch.springbatch.tasklet.ExecutionTasklet1;
-import io.springbatch.springbatch.tasklet.ExecutionTasklet2;
+import io.springbatch.springbatch.domain.listener.JobRepositoryListener;
+import io.springbatch.springbatch.domain.tasklet.ExecutionTasklet1;
+import io.springbatch.springbatch.domain.tasklet.ExecutionTasklet2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

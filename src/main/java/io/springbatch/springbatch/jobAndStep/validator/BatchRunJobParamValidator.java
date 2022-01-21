@@ -1,4 +1,4 @@
-package io.springbatch.springbatch.batchRun;
+package io.springbatch.springbatch.jobAndStep.validator;
 
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersInvalidException;

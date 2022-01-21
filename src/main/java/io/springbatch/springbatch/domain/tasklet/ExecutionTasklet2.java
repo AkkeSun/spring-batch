@@ -23,7 +23,7 @@ public class ExecutionTasklet2 implements Tasklet {
         System.out.println("stepName : "+ stepExecutionContext.get("stepName")); // null
         // chunkContext.getStepContext().getStepExecution().getJobExecution().getExecutionContext().get("jobName");
         // chunkContext.getStepContext().getStepExecution().getExecutionContext().get("stepName");
-
+        // jobExecutionContext.getString("Job Parameter 꺼내기");
 
         String stepName = chunkContext.getStepContext().getStepExecution().getStepName(); // step2
 

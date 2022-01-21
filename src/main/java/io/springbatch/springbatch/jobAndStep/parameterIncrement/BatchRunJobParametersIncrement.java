@@ -1,4 +1,4 @@
-package io.springbatch.springbatch.batchRun;
+package io.springbatch.springbatch.jobAndStep.parameterIncrement;
 
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 커스텀 JobParametersIncrementer
+ * 커스텀 JobParametersIncrementer : 굳이 사용하지 않을거같애
  */
 @Component
 public class BatchRunJobParametersIncrement implements JobParametersIncrementer {

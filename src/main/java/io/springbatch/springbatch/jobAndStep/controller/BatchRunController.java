@@ -1,5 +1,6 @@
-package io.springbatch.springbatch.batchRun;
+package io.springbatch.springbatch.jobAndStep.controller;
 
+import io.springbatch.springbatch.jobAndStep.JobAndStepConfiguration;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -18,7 +19,7 @@ import java.util.Date;
 public class BatchRunController {
 
     @Autowired
-    private  BatchRunConfiguration batchRunConfiguration;
+    private JobAndStepConfiguration batchRunConfiguration;
 
     @Autowired
     private JobLauncher jobLauncher;
@@ -26,7 +27,7 @@ public class BatchRunController {
     @PostMapping("/batchRun")
     public String batchRunTest() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
-        Job batchJob = batchRunConfiguration.batchJob();
+        Job batchJob = batchRunConfiguration.parentJob();
 
         JobParameters jobParameters = new JobParametersBuilder()
                 .addString("id", "id")

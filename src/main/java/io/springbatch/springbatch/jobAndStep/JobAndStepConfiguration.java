@@ -1,7 +1,7 @@
 package io.springbatch.springbatch.jobAndStep;
 
 import io.springbatch.springbatch.jobAndStep.listener.BatchRunJobListener;
-import io.springbatch.springbatch.jobAndStep.step.RunTasklet1;
+import io.springbatch.springbatch.jobAndStep.step.RunTasklet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -21,7 +21,7 @@ public class JobAndStepConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final BatchRunJobListener jobListener;
-    private final RunTasklet1 runTasklet1;
+    private final RunTasklet runTasklet1;
     private final JobLauncher jobLauncher;
 
 

@@ -1,4 +1,4 @@
-package io.springbatch.springbatch.chunk.ItemReader;
+package io.springbatch.springbatch.chunk.ItemReader.db;
 
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;

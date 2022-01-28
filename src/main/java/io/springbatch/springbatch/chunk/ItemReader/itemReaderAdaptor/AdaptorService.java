@@ -1,7 +1,7 @@
 package io.springbatch.springbatch.chunk.ItemReader.itemReaderAdaptor;
 
-import io.springbatch.springbatch.chunk.ItemReader.CustomerEntity;
-import io.springbatch.springbatch.chunk.ItemReader.CustomerRepository;
+import io.springbatch.springbatch.chunk.ItemReader.db.CustomerEntity;
+import io.springbatch.springbatch.chunk.ItemReader.db.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

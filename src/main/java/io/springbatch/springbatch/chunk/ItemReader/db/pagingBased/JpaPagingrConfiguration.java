@@ -1,7 +1,7 @@
 package io.springbatch.springbatch.chunk.ItemReader.db.pagingBased;
 
-import io.springbatch.springbatch.chunk.ItemReader.CustomerEntity;
-import io.springbatch.springbatch.chunk.ItemReader.CustomerEntityItemWriter;
+import io.springbatch.springbatch.chunk.ItemReader.db.CustomerEntity;
+import io.springbatch.springbatch.chunk.ItemReader.db.CustomerEntityItemWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -9,7 +9,6 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.database.builder.JpaCursorItemReaderBuilder;
 import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

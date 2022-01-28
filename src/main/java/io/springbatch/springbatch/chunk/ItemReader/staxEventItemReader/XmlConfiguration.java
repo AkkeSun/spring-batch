@@ -53,8 +53,8 @@ public class XmlConfiguration {
         return new StaxEventItemReaderBuilder<Customer2>()
                 .name("xmlItemReader")
                 .resource(new ClassPathResource("customer.xml"))
-                .addFragmentRootElements("customer") // root fragment
-                .unmarshaller(itemUnmarshaller())    // 매핑 셋업
+                .addFragmentRootElements("customers") // root fragment
+                .unmarshaller(itemUnmarshaller())     // 매핑 셋업
                 .build();
     }
 

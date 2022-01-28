@@ -8,6 +8,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
@@ -23,7 +24,7 @@ import org.springframework.core.io.FileSystemResource;
  */
 @Configuration
 @RequiredArgsConstructor
-public class FlatFilterConfiguration {
+public class FlatFileConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
 
@@ -59,7 +60,7 @@ public class FlatFilterConfiguration {
     }
 
 
-    public FlatFileItemReader flatFileItemReader1(){
+    public ItemReader<Customer2> flatFileItemReader1(){
         return new FlatFileItemReaderBuilder<Customer2>()
                 .name("DelimitedLineTokenizer") // 이름 설정
                 .resource(new ClassPathResource("customer.txt")) // 매핑할 리소스
@@ -73,7 +74,7 @@ public class FlatFilterConfiguration {
                 .build();
     }
 
-    public FlatFileItemReader flatFileItemReader2(){
+    public ItemReader<Customer2> flatFileItemReader2(){
         return new FlatFileItemReaderBuilder<Customer2>()
                 .name("FixedLengthTokenizer")
                 .resource(new FileSystemResource("C:\\spring-batch\\src\\main\\resources\\customer2.txt"))

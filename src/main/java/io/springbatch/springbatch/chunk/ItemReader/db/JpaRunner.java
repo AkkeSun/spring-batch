@@ -1,4 +1,4 @@
-package io.springbatch.springbatch.chunk.ItemReader;
+package io.springbatch.springbatch.chunk.ItemReader.db;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -6,7 +6,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 
 @Component

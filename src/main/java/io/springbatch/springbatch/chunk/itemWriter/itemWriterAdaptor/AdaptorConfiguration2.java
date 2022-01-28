@@ -1,6 +1,9 @@
-package io.springbatch.springbatch.chunk.ItemReader.itemReaderAdaptor;
+
+package io.springbatch.springbatch.chunk.itemWriter.itemWriterAdaptor;
 
 import io.springbatch.springbatch.chunk.ItemReader.db.CustomerEntity;
+import io.springbatch.springbatch.chunk.ItemReader.itemReaderAdaptor.AdaptorService;
+import io.springbatch.springbatch.chunk.itemWriter.db.jpa.CustomerEntityBackup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -9,6 +12,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.adapter.ItemReaderAdapter;
+import org.springframework.batch.item.adapter.ItemWriterAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,50 +21,51 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @RequiredArgsConstructor
-public class AdaptorConfiguration {
+public class AdaptorConfiguration2 {
 
     private final JobBuilderFactory jobBuilderFactory;
 
     private final StepBuilderFactory stepBuilderFactory;
 
-    private final AdaptorService adaptorService;
+    private final AdaptorService readAdaptor;
+
+    private final AdaptorService2 writeAdaptor;
 
     private int chunkSize = 3;
 
 
     @Bean
-    public Job adaptorJob() {
-        return jobBuilderFactory.get("adaptorJob")
+    public Job adaptorJob2() {
+        return jobBuilderFactory.get("adaptorJob2")
                 .incrementer(new RunIdIncrementer())
-                .start(adaptorStep())
+                .start(adaptorStep2())
                 .build();
     }
 
-    @Bean
-    public Step adaptorStep() {
+    private Step adaptorStep2() {
         return stepBuilderFactory.get("adaptorStep")
-                .<CustomerEntity, CustomerEntity>chunk(chunkSize)
+                .<CustomerEntity, CustomerEntityBackup>chunk(chunkSize)
                 .reader(itemReaderAdapter())
                 .writer(adaptorItemWriter())
                 .build();
     }
 
-    @Bean
-    public ItemReaderAdapter itemReaderAdapter() {
+    private ItemReaderAdapter itemReaderAdapter() {
         ItemReaderAdapter adapter = new ItemReaderAdapter();
 
-        adapter.setTargetObject(adaptorService);
+        adapter.setTargetObject(readAdaptor);
         adapter.setTargetMethod("testMethod");
 
         return adapter;
     }
 
-    @Bean
-    public ItemWriter<CustomerEntity> adaptorItemWriter() {
-        return items -> {
-            System.out.println(items);
-        };
+    private ItemWriter<CustomerEntity> adaptorItemWriter() {
 
+        ItemWriterAdapter adapter = new ItemWriterAdapter();
+        adapter.setTargetObject(writeAdaptor);
+        adapter.setTargetMethod("saveMethod");
+
+        return adapter;
     }
 
 }

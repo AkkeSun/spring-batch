@@ -35,9 +35,9 @@ public class ScopeConfiguration {
     }
 
     @Bean
-    @JobScope // proxy 객채 자동 생성
+    @JobScope // proxy 객채 자동 생성 : Step 에 붙인다
     public Step scopeStep1(@Value("#{jobParameters['message1']}") String message){
-        System.out.println("message1 : " + message);
+        System.out.println("jobParameter : " + message);
         return stepBuilderFactory.get("scopeStep1")
                 .tasklet(scopeTasklet1(null))
                 .build();
@@ -53,9 +53,9 @@ public class ScopeConfiguration {
     }
 
     @Bean
-    @StepScope
+    @StepScope // proxy 객채 자동 생성 : Tasklet 에 붙인다
     public Tasklet scopeTasklet1(@Value("#{jobExecutionContext['message2']}") String message2){
-        System.out.println("message2 :" + message2);
+        System.out.println("jobExecutionContext :" + message2);
 
         return (stepContribution, chunkContext) -> {
             System.out.println(">>>>>> scopeTasklet1");
@@ -66,7 +66,7 @@ public class ScopeConfiguration {
     @Bean
     @StepScope // proxy 객채 자동 생성
     public Tasklet scopeTasklet2(@Value("#{stepExecutionContext['message3']}") String message3){
-        System.out.println("message3 :" + message3 );
+        System.out.println("stepExecutionContext :" + message3 );
 
         return (stepContribution, chunkContext) -> {
             System.out.println(">>>>>> scopeTasklet2");

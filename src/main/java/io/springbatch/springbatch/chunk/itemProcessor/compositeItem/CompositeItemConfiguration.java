@@ -1,4 +1,4 @@
-package io.springbatch.springbatch.chunk.itemProcessor.CompositeItem;
+package io.springbatch.springbatch.chunk.itemProcessor.compositeItem;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -39,12 +39,12 @@ public class CompositeItemConfiguration {
         return stepBuilderFactory.get("cpStep_")
                 .<String, String>chunk(3)
                 .reader(new ListItemReader<>(Arrays.asList("item", "item", "item", "item", "item")))
-                .processor(compositItemProcessor())
+                .processor(compositeItemProcessor())
                 .writer(item -> System.out.println(item))
                 .build();
     }
 
-    private ItemProcessor<? super String, String> compositItemProcessor() {
+    private ItemProcessor<? super String, String> compositeItemProcessor() {
 
         List itemProcessor = new ArrayList();
         itemProcessor.add(new ItemProcessor1());

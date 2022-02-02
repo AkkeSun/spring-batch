@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class AdaptorService2 <T> {
+public class AdaptorService2 {
 
     @Autowired
     private CustomerEntityBackupRepository repository;

@@ -43,7 +43,7 @@ public class JobAndFlowConfiguration1 {
                 .on("FAILED").to(step1_sf())
 
 
-                // ====== JOB 을 처리하는  있는 API ======
+                // ====== JOB 을 처리하는 API ======
                 // .stop() STOPPED
                 // .fail() FAILED
                 // .end()  COMPLETED

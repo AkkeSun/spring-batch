@@ -65,7 +65,7 @@ public class FlatFileConfiguration {
                 .name("DelimitedLineTokenizer") // 이름 설정
                 .resource(new ClassPathResource("customer.txt")) // 매핑할 리소스
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<>()) // fieldSetMapper 입력
-                .strict(true)  // 토큰화 검증을 적용할것인지 여부 (기본값 true)
+                .strict(true)                  // 토큰화 검증을 적용할것인지 여부 (기본값 true)
                 .targetType(Customer2.class)   // 타겟타입 설정
                 .linesToSkip(1)                // 스킵할 라인 설정
                 .delimited()                   // 구분자 기준으로 라인을 토큰화

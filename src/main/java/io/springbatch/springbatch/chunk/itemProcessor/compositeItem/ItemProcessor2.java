@@ -1,4 +1,4 @@
-package io.springbatch.springbatch.chunk.itemProcessor.CompositeItem;
+package io.springbatch.springbatch.chunk.itemProcessor.compositeItem;
 
 import org.springframework.batch.item.ItemProcessor;
 

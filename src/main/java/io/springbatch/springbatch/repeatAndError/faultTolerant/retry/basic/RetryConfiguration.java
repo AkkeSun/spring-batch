@@ -68,7 +68,7 @@ public class RetryConfiguration {
                 */
 
                 .skipPolicy(skipPolicy())
-                .retryPolicy(retryPolicy()) // retry + retryLimit
+                .retryPolicy(retryPolicy())
 
                 /*
                 .backOffPolicy() // 다시 Retry 하기까지의 지연시간 (ms)

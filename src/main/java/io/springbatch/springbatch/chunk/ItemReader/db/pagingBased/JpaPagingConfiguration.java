@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Configuration
 @RequiredArgsConstructor
-public class JpaPagingrConfiguration {
+public class JpaPagingConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
 

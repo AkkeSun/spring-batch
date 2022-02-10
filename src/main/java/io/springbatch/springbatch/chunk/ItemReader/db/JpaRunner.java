@@ -17,23 +17,70 @@ public class JpaRunner implements ApplicationRunner {
     @Override
     @Transactional
     public void run(ApplicationArguments args) throws Exception {
-            /*
-            CustomerEntity customer1 = CustomerEntity.builder().name("sun").age(32).year("1991").build();
-            CustomerEntity customer2 = CustomerEntity.builder().name("exg").age(32).year("1991").build();
-            CustomerEntity customer3 = CustomerEntity.builder().name("noh").age(35).year("1988").build();
-            CustomerEntity customer4 = CustomerEntity.builder().name("seb").age(35).year("1988").build();
-            CustomerEntity customer5 = CustomerEntity.builder().name("sah").age(44).year("1231").build();
-            CustomerEntity customer6 = CustomerEntity.builder().name("age").age(20).year("1991").build();
-            CustomerEntity customer7 = CustomerEntity.builder().name("sdf").age(25).year("1991").build();
-            CustomerEntity customer8 = CustomerEntity.builder().name("dfa").age(41).year("1991").build();
-            repository.save(customer1);
-            repository.save(customer2);
-            repository.save(customer3);
-            repository.save(customer4);
-            repository.save(customer5);
-            repository.save(customer6);
-            repository.save(customer7);
-            repository.save(customer8);
-            */
+
+        /*
+        CustomerEntity customer1 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer2 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer3 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer4 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer5 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer6 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer7 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer8 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer9 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer10 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer11 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer12 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer13 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer14 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer15 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer16 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer17 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer18 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer19 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer20 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer21 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer22 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer23 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer24 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer25 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer26 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer27 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer28 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer29 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+        CustomerEntity customer30 = CustomerEntity.builder().name("test").age(32).year("1991").build();
+
+        repository.save(customer1);
+        repository.save(customer2);
+        repository.save(customer3);
+        repository.save(customer4);
+        repository.save(customer5);
+        repository.save(customer6);
+        repository.save(customer7);
+        repository.save(customer8);
+        repository.save(customer9);
+        repository.save(customer10);
+        repository.save(customer11);
+        repository.save(customer12);
+        repository.save(customer13);
+        repository.save(customer14);
+        repository.save(customer15);
+        repository.save(customer16);
+        repository.save(customer17);
+        repository.save(customer18);
+        repository.save(customer19);
+        repository.save(customer20);
+        repository.save(customer21);
+        repository.save(customer22);
+        repository.save(customer23);
+        repository.save(customer24);
+        repository.save(customer25);
+        repository.save(customer26);
+        repository.save(customer27);
+        repository.save(customer28);
+        repository.save(customer29);
+        repository.save(customer30);
+*/
+
     }
 }

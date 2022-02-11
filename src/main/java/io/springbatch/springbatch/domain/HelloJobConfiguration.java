@@ -24,8 +24,6 @@ public class HelloJobConfiguration {
     private final ExecutionTasklet2 executionTasklet2;
     private final JobRepositoryListener jobRepositoryListener;
 
-
-    // job 생성
     @Bean
     public Job helloJob(){
         return jobBuilderFactory.get("helloJob")     // jobName Setting

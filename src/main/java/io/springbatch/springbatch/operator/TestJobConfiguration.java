@@ -13,7 +13,10 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
+/**
+ * JobRegistryBeanPostProcessor 를 통해 Job 을 JobRegistry 에 등록
+ *
+ */
 @Configuration
 @RequiredArgsConstructor
 public class TestJobConfiguration {

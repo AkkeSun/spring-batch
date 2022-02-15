@@ -1,6 +1,7 @@
 package io.springbatch.springbatch.chunk.itemProcessor.classifierComposite;
 
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Test;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -8,6 +9,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.*;
 import org.springframework.batch.item.support.ClassifierCompositeItemProcessor;
+import org.springframework.classify.Classifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,7 +17,7 @@ import java.util.*;
 
 
 /**
- * ClassifierCompositeItemProcessor Example : Classifier 값에 따른 출력
+ * 조건에 따라 다른 ItemProcessor 를 사용한다
  */
 @Configuration
 @RequiredArgsConstructor
@@ -47,7 +49,7 @@ public class ClassifierCompositeItemConfiguration {
             int i = 0;
 
             @Override
-            public ProcessorInfo read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+            public ProcessorInfo read() {
                 i++;
                 ProcessorInfo processorInfo = ProcessorInfo.builder().id(i).build();
 
@@ -59,8 +61,10 @@ public class ClassifierCompositeItemConfiguration {
 
     private ItemProcessor<? super ProcessorInfo, ProcessorInfo> compositeItemProcessor() {
 
-        ClassifierCompositeItemProcessor<ProcessorInfo, ProcessorInfo> itemProcessor = new ClassifierCompositeItemProcessor<>();
+        ClassifierCompositeItemProcessor<ProcessorInfo, ProcessorInfo> itemProcessor =
+                new ClassifierCompositeItemProcessor<>();
 
+        // processorInfo.getId()를 key 값으로 갖도록 규칙을 설정
         ProcessorClassifier classifier = new ProcessorClassifier();
 
         Map<Integer, ItemProcessor<ProcessorInfo, ProcessorInfo>> processorMap = new HashMap<>();
@@ -71,6 +75,19 @@ public class ClassifierCompositeItemConfiguration {
         classifier.setProcessMap(processorMap);
         itemProcessor.setClassifier(classifier);
 
+        // 이렇게 바로 만들어 줄 수도 있다
+        /*
+        itemProcessor.setClassifier(processorInfo -> {
+            switch (processorInfo.getId()) {
+                case 1:
+                    return new TestItemProcessor1();
+                case 2:
+                    return new TestItemProcessor2();
+                default:
+                    return new TestItemProcessor3();
+            }
+        });
+        */
         return itemProcessor;
     }
 

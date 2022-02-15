@@ -16,6 +16,7 @@ public class ProcessorClassifier implements Classifier<ProcessorInfo, ItemProces
 
     @Override
     public ItemProcessor<?, ? extends ProcessorInfo> classify(ProcessorInfo processorInfo) {
+        // processMap 에서 processorInfo.getId() 를 key 값으로 이용
         return processMap.get(processorInfo.getId());
     }
 

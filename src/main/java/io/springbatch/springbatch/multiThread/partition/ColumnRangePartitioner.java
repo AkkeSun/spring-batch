@@ -10,9 +10,12 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * gridSize 만큼 executionContext 를 생성한다.
- * 생성된 executionContext 는 targetSize 로 분할된 id의 minValue, maxValue 를 가지고 있고
- * 이는 ItemReader 에서 Where 문의 조건으로 이용된다
+ * gridSize 만큼 Map<String, ExecutionContext> 를 리턴한다
+ * executionContext Map 의 value 에 돌어가있는 ExecutionContext 는
+ * slaveStep 에서 참조가능하다.
+ * 보통 ExecutionContext 값을 where 조건으로 하여 쿼리를 가져온다.
+ * 아래의 예제처럼 총 갯수를 나눠 min, max 값을 조건으로 쿼리를 가져오기도하고,
+ * DB 컬럼에 구분자 (ex. gubun)를 줘서 쿼리를 가져오기도 한다.
  */
 public class ColumnRangePartitioner implements Partitioner {
 
@@ -48,7 +51,6 @@ public class ColumnRangePartitioner implements Partitioner {
 
         while (start <= max) {
             ExecutionContext value = new ExecutionContext();
-            result.put("partition" + number, value);
 
             if (end >= max) {
                 end = max;
@@ -57,6 +59,8 @@ public class ColumnRangePartitioner implements Partitioner {
             // executionContext 에 담으면 바로 DB에 저장된다
             value.putInt("minValue", start);
             value.putInt("maxValue", end);
+
+            result.put("partition" + number, value);
 
             start += targetSize;
             end += targetSize;

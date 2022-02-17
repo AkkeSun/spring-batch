@@ -31,7 +31,6 @@ public class HelloJobConfiguration {
                 .start(step1()) // 스탭 실행
                 .next(step2())  // 스탭 실행
                 .listener(jobRepositoryListener) // 리스너 등록
-                .incrementer(new RunIdIncrementer())
                 .build();
     }
 

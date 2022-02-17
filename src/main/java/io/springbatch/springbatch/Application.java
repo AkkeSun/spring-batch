@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableBatchProcessing // spring Batch 사용
-@EnableScheduling
+@EnableScheduling // 스케쥴링 사용
 public class Application {
 
     public static void main(String[] args) {

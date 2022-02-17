@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * JobRepository 예제
+ * JobExecutionListener 예제
  */
 @Component
 public class JobRepositoryListener implements JobExecutionListener {

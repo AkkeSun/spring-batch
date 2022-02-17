@@ -39,7 +39,7 @@ public class JobAndStepConfiguration {
                 .next(jobStep_js())
 
                 // ================ JobParameters 의 값을 자동 증가 ================
-                // 다른 컬럼이 바뀌지 않아도 실행가능하도록 셋업
+                // job 을 자동실행하도록 설정하는 경우 오류걸리지 않도록 설정
                 .incrementer(new RunIdIncrementer())
                 //.incrementer(customRunIncrement)
 

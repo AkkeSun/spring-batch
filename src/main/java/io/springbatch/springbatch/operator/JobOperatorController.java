@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -39,12 +40,12 @@ public class JobOperatorController {
 
             Job job =  jobRegistry.getJob(iterator.next()); // 기존에 한 번은  실행이 되어야 값을 가져올 수 있다 (DB에 데이터가 있어야함)
             System.out.println(job.getName());
-//          jobOperator.start(job.getName(), "id=" + Math.random()); // job 이름, job parameter
+//          jobOperator.start(job.getName(), "requestDate=" + new Date()); // job 이름, job parameter
 
         }
 
         // JopOperator 를 통해 JOb을 실행한다
-        jobOperator.start("helloJob", "id=" + Math.random()); // job 이름, job parameter_parameter 값은 계속 바꿔줘야한다
+        jobOperator.start("helloJob", "requestDate=" + new Date()); // job 이름, job parameter_parameter 값은 계속 바꿔줘야한다
         return "BATCH START";
     }
 

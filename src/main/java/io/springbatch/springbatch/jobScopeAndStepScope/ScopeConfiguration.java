@@ -52,6 +52,7 @@ public class ScopeConfiguration {
                 .build();
     }
 
+
     @Bean
     @StepScope // proxy 객채 자동 생성 : Tasklet 에 붙인다
     public Tasklet scopeTasklet1(@Value("#{jobExecutionContext['message2']}") String message2){

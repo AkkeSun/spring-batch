@@ -17,7 +17,8 @@ import org.springframework.context.annotation.Configuration;
  * 2. apiMasterStep() : partitioning Step
  *      - partitioner : 각 type 마다 executionContext Map 생성 후 리턴
  *      - ItemReader : type 으로 잘라서 쿼리 읽어오기
- *      - ItemProcessor :
+ *      - ItemProcessor : ClassifierCompositeItemProcessor (type 에 따라 다른 processor 사용)
+ *      - ItemWriter : ClassifierCompositeItemWriter (type 에 따라 다른 writer 사용)
  * 3. apiStep2 () : apiEndTasklet (log)
  */
 @Configuration

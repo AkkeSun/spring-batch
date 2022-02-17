@@ -1,14 +1,15 @@
 package io.springbatch.springbatch.practice.batch.job.api;
 
-import io.springbatch.springbatch.chunk.itemProcessor.classifierComposite.ProcessorClassifier;
 import io.springbatch.springbatch.practice.batch.chunk.processor.*;
 import io.springbatch.springbatch.practice.batch.chunk.writer.*;
 import io.springbatch.springbatch.practice.batch.classifier.ApiProcessorClassifier;
 import io.springbatch.springbatch.practice.batch.classifier.ApiWriterClassifier;
 import io.springbatch.springbatch.practice.batch.domain.ApiRequestVo;
-import io.springbatch.springbatch.practice.batch.domain.Product;
 import io.springbatch.springbatch.practice.batch.domain.ProductVo;
+import io.springbatch.springbatch.practice.batch.listener.ApiReaderListener;
+import io.springbatch.springbatch.practice.batch.listener.ApiProcessorListener;
 import io.springbatch.springbatch.practice.batch.partition.ProductPartitioner;
+import io.springbatch.springbatch.practice.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -39,6 +40,11 @@ public class ApiStepConfiguration {
 
     private final StepBuilderFactory stepBuilderFactory;
     private final DataSource dataSource;
+    private final ApiService1 apiService1;
+    private final ApiService2 apiService2;
+    private final ApiService3 apiService3;
+    private final ApiService4 apiService4;
+    private final ApiService5 apiService5;
     private int chunkSize = 10;
 
     @Bean
@@ -51,7 +57,8 @@ public class ApiStepConfiguration {
                 .build();
     }
 
-    
+
+
     @Bean
     public Partitioner apiPartitioner() {
         ProductPartitioner partitioner = new ProductPartitioner();
@@ -60,12 +67,15 @@ public class ApiStepConfiguration {
     }
 
 
+
     @Bean
     public Step apiSlaveStep() throws Exception {
         return stepBuilderFactory.get("apiSlaveStep")
                 .<ProductVo, ProductVo>chunk(chunkSize)
                 .reader(apiItemReader(null))
+                .listener(new ApiReaderListener())
                 .processor(apiItemProcessor())
+                .listener(new ApiProcessorListener())
                 .writer(apiItemWriter())
                 .build();
     }
@@ -134,7 +144,6 @@ public class ApiStepConfiguration {
             }
         });
         */
-
         return processor;
     }
 
@@ -148,14 +157,29 @@ public class ApiStepConfiguration {
         ApiWriterClassifier classifier = new ApiWriterClassifier();
         Map<String, ItemWriter<ApiRequestVo>> writerMap = new HashMap<>();
 
-        writerMap.put("1", new ApiItemWriter1());
-        writerMap.put("2", new ApiItemWriter2());
-        writerMap.put("3", new ApiItemWriter3());
-        writerMap.put("4", new ApiItemWriter4());
-        writerMap.put("5", new ApiItemWriter5());
+        writerMap.put("1", new ApiItemWriter1(apiService1));
+        writerMap.put("2", new ApiItemWriter2(apiService2));
+        writerMap.put("3", new ApiItemWriter3(apiService3));
+        writerMap.put("4", new ApiItemWriter4(apiService4));
+        writerMap.put("5", new ApiItemWriter5(apiService5));
 
         classifier.SetProcessorMap(writerMap);
         writer.setClassifier(classifier);
+
+
+        // 직접 작성하기
+        /*
+        writer.setClassifier(apiRequestVo -> {
+            switch(apiRequestVo.getProductVo().getType()){
+                case "1" : return new ApiItemWriter1();
+                case "2" : return new ApiItemWriter2();
+                case "3" : return new ApiItemWriter3();
+                case "4" : return new ApiItemWriter4();
+                default  : return new ApiItemWriter5();
+            }
+        });
+        */
+
         return writer;
     }
 
@@ -166,7 +190,7 @@ public class ApiStepConfiguration {
         taskExecutor.setCorePoolSize(5);
         taskExecutor.setMaxPoolSize(8);
         taskExecutor.setThreadNamePrefix("API-THREAD");
-        return null;
+        return taskExecutor;
     }
 
 }

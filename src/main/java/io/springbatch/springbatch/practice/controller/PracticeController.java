@@ -23,10 +23,18 @@ public class PracticeController {
     @Autowired
     private JobOperator jobOperator;
 
-    @GetMapping("/practice/start")
-    private String start() throws NoSuchJobException, JobInstanceAlreadyExistsException, JobParametersInvalidException {
+    @GetMapping("/file/start")
+    public String job1Start() throws NoSuchJobException, JobInstanceAlreadyExistsException, JobParametersInvalidException {
 
-        jobOperator.start("fileJob__", "requestDate=" + "20220214");
+        jobOperator.start("fileJob__", "requestDate=" + "20220215");
+        return "BATCH START";
+    }
+
+    @GetMapping("/api/start")
+    public String job2Start() throws NoSuchJobException, JobInstanceAlreadyExistsException, JobParametersInvalidException {
+
+
+        jobOperator.start("apiJob", "id=" + Math.random());
         return "BATCH START";
     }
 }

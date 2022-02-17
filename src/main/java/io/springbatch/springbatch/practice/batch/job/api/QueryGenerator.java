@@ -17,8 +17,7 @@ public class QueryGenerator {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         String query = "select type from product group by type";
         ProductRowMapper productRowMapper = new ProductRowMapper();
-
-        List<ProductVo> productList = jdbcTemplate.query(query, productRowMapper);
+        List<ProductVo> productList = jdbcTemplate.query("select type as type from product group by type", productRowMapper);
 
         return productList;
     }

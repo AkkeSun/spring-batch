@@ -15,6 +15,7 @@ spring:
   batch:
     job:
       names: ${job.name:NONE}
+      enabled: false
   jpa:
     hibernate:
       ddl-auto: validate
